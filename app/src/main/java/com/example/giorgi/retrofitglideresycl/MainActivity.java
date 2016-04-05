@@ -3,9 +3,11 @@ package com.example.giorgi.retrofitglideresycl;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.giorgi.retrofitglideresycl.connections.RetrofitAPI;
 import com.example.giorgi.retrofitglideresycl.models.Repo;
 
@@ -21,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     TextView tvTitle;
+    ImageView ivm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Repo> call, Response<Repo> response) {
                 tvTitle.setText(response.body().getTitle());
+                Glide.with(getBaseContext())
+                        .load(response.body().getPoster())
+                        .into(ivm);
             }
 
             @Override
@@ -51,5 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void setUpViews(){
         tvTitle = (TextView)findViewById(R.id.tvTitle);
+        ivm= (ImageView)findViewById(R.id.ivm);
     }
 }

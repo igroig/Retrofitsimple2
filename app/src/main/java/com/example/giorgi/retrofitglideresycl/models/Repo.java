@@ -7,6 +7,17 @@ public class Repo {
 
     private String Title;
     private String Language;
+    private String Poster;
+
+    public String getPoster() {
+        return Poster;
+    }
+
+    public void setPoster(String poster) {
+        Poster = poster;
+    }
+
+
 
     public String getTitle() {
         return Title;
